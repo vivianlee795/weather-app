@@ -46,3 +46,7 @@ form {
 #celsius, #fahrenheit {
   font-family: "Lato", sans-serif;
   text-decoration: none;}
+  #byLine {font-size: 12px;
+    position: relative;
+    bottom: 270px;
+  text-align: center;}
