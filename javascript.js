@@ -1,4 +1,5 @@
 let apiKey = "de5507af058a16c4d9e7966c8f37f3fd";
+let unit = "imperial";
 
 function formatDate(current) {
   let days = [
@@ -20,19 +21,18 @@ function formatDate(current) {
   return currentDate;
 }
 
-function getTempUnit() {
-  let currentUnit = document.querySelector("#currentUnit");
-  if (currentUnit.innerHTML === "F") {
-    return "imperial";
-  } else {
-    return "metric";
-  }
-}
+// function getTempUnit() {
+//   let currentUnit = document.querySelector("#currentUnit");
+//   if (currentUnit.innerHTML === "F") {
+//     return "imperial";
+//   } else {
+//     return "metric";
+//   }
+// }
 function getPosition(position) {
-  let units = getTempUnit();
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showResponse);
 }
 function search(event) {
@@ -41,8 +41,7 @@ function search(event) {
   getLocation(input);
 }
 function getLocation(cityName) {
-  let units = getTempUnit();
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showResponse);
 }
 function showResponse(response) {
