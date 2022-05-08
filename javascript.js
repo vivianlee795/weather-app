@@ -1,5 +1,6 @@
 let apiKey = "de5507af058a16c4d9e7966c8f37f3fd";
 let unit = "imperial";
+let cityName;
 
 function formatDate(current) {
   let days = [
@@ -37,28 +38,27 @@ function getPosition(position) {
 }
 function search(event) {
   event.preventDefault();
-  let input = document.querySelector("#search").value;
-  getLocation(input);
+  cityName = document.querySelector("#search").value;
+  document.querySelector("#search").value = null;
+  getLocation();
 }
-function getLocation(cityName) {
+function getLocation() {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showResponse);
 }
 function showResponse(response) {
   let currentTemp = Math.round(response.data.main.temp);
-  let currentLocation = response.data.name;
+  cityName = response.data.name;
   updateTemp(currentTemp);
-  changeLocation(currentLocation);
+  changeLocation();
 }
 function updateTemp(temp) {
   let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = `${temp}`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(showResponse);
 }
-function changeLocation(location) {
+function changeLocation() {
   let currentLocation = document.querySelector("#location");
-  currentLocation.innerHTML = `${location}`;
+  currentLocation.innerHTML = `${cityName}`;
 }
 function getCurrentLocation(event) {
   event.preventDefault;
@@ -67,14 +67,16 @@ function getCurrentLocation(event) {
 function displayCelsius(event) {
   event.preventDefault;
   unit = "metric";
-  updateTemp();
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showResponse);
   let currentUnit = document.querySelector("#currentUnit");
   currentUnit.innerHTML = "C";
 }
 function displayFahrenheit(event) {
   event.preventDefault;
   unit = "imperial";
-  updateTemp();
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showResponse);
   let currentUnit = document.querySelector("#currentUnit");
   currentUnit.innerHTML = "F";
 }
