@@ -47,12 +47,14 @@ function getLocation(cityName) {
 function showResponse(response) {
   let currentTemp = Math.round(response.data.main.temp);
   let currentLocation = response.data.name;
-  changeTemp(currentTemp);
+  updateTemp(currentTemp);
   changeLocation(currentLocation);
 }
-function changeTemp(temp) {
+function updateTemp(temp) {
   let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = `${temp}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showResponse);
 }
 function changeLocation(location) {
   let currentLocation = document.querySelector("#location");
@@ -62,13 +64,34 @@ function getCurrentLocation(event) {
   event.preventDefault;
   navigator.geolocation.getCurrentPosition(getPosition);
 }
+function displayCelsius(event) {
+  event.preventDefault;
+  unit = "metric";
+  updateTemp();
+  let currentUnit = document.querySelector("#currentUnit");
+  currentUnit.innerHTML = "C";
+}
+function displayFahrenheit(event) {
+  event.preventDefault;
+  unit = "imperial";
+  updateTemp();
+  let currentUnit = document.querySelector("#currentUnit");
+  currentUnit.innerHTML = "F";
+}
 
 let date = document.querySelector("#date");
 date.innerHTML = formatDate(new Date());
+
 let form = document.querySelector("form");
 form.addEventListener("submit", search);
+
 let currentLocationButton = document.querySelector("#currentLocationEmoji");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", displayCelsius);
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", displayFahrenheit);
 
 navigator.geolocation.getCurrentPosition(getPosition);
 // function convertFromCToF(event) {
@@ -88,7 +111,3 @@ navigator.geolocation.getCurrentPosition(getPosition);
 //     currentTemp.innerHTML = Math.round(((currentTemp.innerHTML - 32) * 5) / 9);
 //   }
 // }
-// let celsius = document.querySelector("#celsius");
-// celsius.addEventListener("click", convertFromFToC);
-// let fahrenheit = document.querySelector("#fahrenheit");
-// fahrenheit.addEventListener("click", convertFromCToF);
