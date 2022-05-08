@@ -41,10 +41,12 @@ function getLocation() {
 }
 function showResponse(response) {
   let currentTemp = Math.round(response.data.main.temp);
+  let icon = response.data.weather[0].icon;
   let weatherDesciption = response.data.weather[0].description;
-  let windSpeed = response.data.wind.speed;
+  let windSpeed = Math.round(response.data.wind.speed);
   cityName = response.data.name;
   updateTemp(currentTemp);
+  updateWeatherIcon(icon);
   updateWeatherDescription(weatherDesciption);
   updateWindSpeed(windSpeed);
   changeLocation();
@@ -52,6 +54,11 @@ function showResponse(response) {
 function updateTemp(temp) {
   let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = `${temp}`;
+}
+function updateWeatherIcon(icon) {
+  let weatherIconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute("src", weatherIconUrl);
 }
 function updateWeatherDescription(description) {
   let currentWeatherDescription = document.querySelector("#weatherDescription");
