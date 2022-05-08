@@ -48,13 +48,19 @@ function getLocation() {
 }
 function showResponse(response) {
   let currentTemp = Math.round(response.data.main.temp);
+  let weatherDesciption = response.data.weather[0].description;
   cityName = response.data.name;
   updateTemp(currentTemp);
+  updateWeatherDescription(weatherDesciption);
   changeLocation();
 }
 function updateTemp(temp) {
   let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = `${temp}`;
+}
+function updateWeatherDescription(description) {
+  let currentWeatherDescription = document.querySelector("#weatherDescription");
+  currentWeatherDescription.innerHTML = `${description}`;
 }
 function changeLocation() {
   let currentLocation = document.querySelector("#location");

@@ -44,9 +44,12 @@ form {
   opacity: 80%;
 }
 #celsius, #fahrenheit {
-  font-family: "Lato", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   text-decoration: none;}
-  #byLine {font-size: 12px;
+
+#weatherDescription {font-family:"Source Sans Pro", sans-serif;text-transform: capitalize;}
+ 
+#byLine {font-size: 12px;
     position: relative;
     bottom: 270px;
   text-align: center;}
