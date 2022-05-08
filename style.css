@@ -35,6 +35,9 @@ form {
   font-size: 30px;
 }
 
+#location{
+  text-align: center;
+}
 #currentLocationEmoji {
   font-size: 20px;
   text-decoration: none;
@@ -44,13 +47,29 @@ form {
   font-weight: 300;
   opacity: 80%;
 }
+#currentWeather {
+  text-align: center;
+}
+#unit{
+  text-align: center;
+}
 #celsius, #fahrenheit {
   font-family: "Source Sans Pro", sans-serif;
+  margin: 0 auto;
   text-decoration: none;}
 
-#weatherDescription {font-family:"Source Sans Pro", sans-serif;text-transform: capitalize;}
+#weatherInfo {
+  text-align: center;
+}
+
+#weatherDescription {
+  font-family:"Source Sans Pro", sans-serif;
+  text-transform: capitalize;
+}
  
-#byLine {font-size: 12px;
-    position: relative;
-    bottom: 270px;
-  text-align: center;}
+#byLine {
+  font-size: 12px;
+  position: relative;
+  bottom: 270px;
+  text-align: center;
+}

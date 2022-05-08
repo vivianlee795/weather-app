@@ -44,19 +44,21 @@
             <div class="col" id="date"></div>
           </div>
           <div class="row current">
-            <div class="col-5">
+            <div class="col-5" id="currentWeather">
               <span><img src="" alt="" id="icon" /></span>
               <span id="currentTemp"></span>°<span id="currentUnit">F</span>
             </div>
             <div class="col-7" id="location"></div>
           </div>
           <div class="row">
-            <div class="col-4" id="unit">
+            <div class="col-5" id="unit">
               <a href="#" id="celsius">°C</a> |
               <a href="#" id="fahrenheit">°F</a>
             </div>
-            <div class="col-4" id="weatherDescription"></div>
-            <div class="col-4">Wind: <span id="windSpeed"></span></div>
+            <div class="col-7" id="weatherInfo">
+              <span id="weatherDescription"></span> |
+              <span> Wind: <span id="windSpeed"></span></span>
+            </div>
           </div>
           <div class="col title">5-DAY FORECAST</div>
           <div class="row days">
