@@ -50,28 +50,48 @@ function showResponse(response) {
   updateWeatherDescription(weatherDesciption);
   updateWindSpeed(windSpeed);
   changeLocation();
-  displayForecast();
+  getForecast(response.data.coord);
 }
 
-function displayForecast() {
+function getForecast(position) {
+  let latitude = position.lat;
+  let longitude = position.lon;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  let days = response.data.daily;
+  days.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
         <div class="col">
-          <div id="day">${day}</div>
+          <div id="day">${formatForecastDay(day.dt)}</div>
+          <img id="forecastIcon" src="http://openweathermap.org/img/wn/${
+            day.weather[0].icon
+          }.png"/>
           <div id="forecastTemp">
-            <span id="minimum"></span><span id="maximum"></span>
+            <span id="minimum">${Math.round(
+              day.temp.min
+            )}</span> <span id="maximum">${Math.round(day.temp.max)}</span>
           </div>
-          <div id="forecastIcon"></div>
+         
         </div>
       `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
 }
 function updateTemp(temp) {
   let currentTemp = document.querySelector("#currentTemp");
