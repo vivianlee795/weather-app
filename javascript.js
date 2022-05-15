@@ -76,7 +76,9 @@ function displayForecast(response) {
           <div id="forecastTemp">
             <span id="minimum">${Math.round(
               day.temp.min
-            )}</span> <span id="maximum">${Math.round(day.temp.max)}</span>
+            )}</span>&nbsp;&nbsp;&nbsp;<span id="maximum">${Math.round(
+          day.temp.max
+        )}</span>
           </div>
          
         </div>

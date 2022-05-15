@@ -23,7 +23,7 @@ form {
   font-size: 20px;
   font-weight: 600;
   opacity: 75%;
-  padding: 10px 0px 15px 0px;
+  padding-top: 15px;
 }
 .days {
   font-family: "Source Sans Pro", sans-serif;
@@ -42,7 +42,7 @@ form {
   font-size: 20px;
   text-decoration: none;
 }
-#date { 
+#date, #day { 
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
   opacity: 80%;
@@ -55,18 +55,23 @@ form {
 }
 #celsius, #fahrenheit {
   font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
   margin: 0 auto;
   text-decoration: none;}
 
 #weatherInfo {
+  font-size: 14px;
   text-align: center;
 }
 
 #weatherDescription {
   font-family:"Source Sans Pro", sans-serif;
+
   text-transform: capitalize;
 }
- 
+#forecastTemp{  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;}
+ #minimum {opacity:70%}
 #byLine {
   font-size: 12px;
   position: relative;
